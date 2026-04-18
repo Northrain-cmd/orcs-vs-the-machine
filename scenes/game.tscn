@@ -1,0 +1,331 @@
+[gd_scene format=3 uid="uid://cnei0e1aceshj"]
+
+[ext_resource type="Texture2D" uid="uid://dfu50gj0gxm5u" path="res://assets/game_background_4/layers/back_land.png" id="1_iywne"]
+[ext_resource type="Texture2D" uid="uid://nfahh636oovg" path="res://assets/castle wall/Castle_vertical3.png" id="2_gee14"]
+[ext_resource type="Texture2D" uid="uid://c7x2o5j2vvtn8" path="res://assets/game_background_4/layers/battleground.png" id="2_p57ef"]
+[ext_resource type="Texture2D" uid="uid://deh675020plv1" path="res://assets/game_background_4/layers/back_decor.png" id="3_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://cgi8npfml3inc" path="res://assets/game_background_4/layers/front_decor.png" id="4_gee14"]
+[ext_resource type="Texture2D" uid="uid://bvr84v3qn3qeq" path="res://assets/game_background_4/layers/ground_decor.png" id="5_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://bf4v5u58t1ape" path="res://scenes/oil_rig.tscn" id="7_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://c4cuowm56t5ih" path="res://scenes/tower.tscn" id="8_vtaks"]
+[ext_resource type="PackedScene" uid="uid://c2ha5h1tpkyrr" path="res://scenes/machine.tscn" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://biisw8vqu40i1" path="res://scenes/enemy_spawner.tscn" id="11_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://bpn7otgy5nk23" path="res://assets/UI/ammo.png" id="11_ssvqc"]
+[ext_resource type="Texture2D" uid="uid://c7f53vjc6q72k" path="res://assets/UI/Basic_GUI_Bundle/Icons/Icon_Small_CoinDollar.png" id="12_dinhu"]
+[ext_resource type="Texture2D" uid="uid://pr5k67qdk6yh" path="res://assets/UI/Basic_GUI_Bundle/BoxesBanners/Banner_Red.png" id="13_kvuet"]
+[ext_resource type="Script" uid="uid://bbycq8m6tivr8" path="res://scripts/coins_label.gd" id="13_trtic"]
+[ext_resource type="Script" uid="uid://be6ljnt63sy16" path="res://scripts/wave_label.gd" id="14_ir15t"]
+[ext_resource type="Script" uid="uid://8a40dqqthla4" path="res://scripts/next_wave_button.gd" id="15_ir15t"]
+[ext_resource type="PackedScene" uid="uid://gsax3akui2s5" path="res://scenes/message.tscn" id="16_264po"]
+[ext_resource type="Texture2D" uid="uid://cnbfq8t8dbuq4" path="res://assets/UI/Basic_GUI_Bundle/BoxesBanners/Banner_Blue.png" id="16_ca42v"]
+[ext_resource type="Script" uid="uid://qds72wlq18j3" path="res://scripts/game_over_screen.gd" id="16_rysoc"]
+[ext_resource type="Texture2D" uid="uid://c3pn5dklaoama" path="res://assets/UI/Basic_GUI_Bundle/Icons/SVG/Icon_Large_Audio_Blank.svg" id="20_bt5mj"]
+[ext_resource type="Script" uid="uid://bj464k3q1eb51" path="res://scenes/mute_button.gd" id="21_37s47"]
+[ext_resource type="Texture2D" uid="uid://bdfuyrmugqt0c" path="res://assets/UI/Basic_GUI_Bundle/Icons/SVG/Icon_Small_Blank_Pause.svg" id="21_e1j6l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rysoc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trtic"]
+bg_color = Color(1, 0.5019608, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rysoc"]
+bg_color = Color(1, 0.5019608, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Game" type="Node" unique_id=2051993807]
+
+[node name="Background" type="Node" parent="." unique_id=128814841]
+
+[node name="BackgroundLand" type="Parallax2D" parent="Background" unique_id=1950131720]
+repeat_size = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/BackgroundLand" unique_id=202830915]
+position = Vector2(640.5, 360)
+scale = Vector2(0.3330729, 0.33240741)
+texture = ExtResource("1_iywne")
+
+[node name="CastleVertical3" type="Sprite2D" parent="Background/BackgroundLand" unique_id=987312982]
+position = Vector2(47, 561)
+scale = Vector2(4.1875, 4.1875)
+texture = ExtResource("2_gee14")
+
+[node name="Battleground" type="Parallax2D" parent="Background" unique_id=1152116461]
+repeat_size = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Battleground" unique_id=952745009]
+position = Vector2(639.49994, 477.5)
+scale = Vector2(0.33307287, 0.2236111)
+texture = ExtResource("2_p57ef")
+
+[node name="BackgroundTrees" type="Parallax2D" parent="Background" unique_id=1489183705]
+repeat_size = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/BackgroundTrees" unique_id=1510545440]
+position = Vector2(640.05554, 359.37503)
+scale = Vector2(0.33330438, 0.33298615)
+texture = ExtResource("3_u5sy4")
+
+[node name="FrontDecor" type="Parallax2D" parent="Background" unique_id=51379904]
+repeat_size = Vector2(1500, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/FrontDecor" unique_id=771723509]
+position = Vector2(640, 360.00003)
+scale = Vector2(0.33281252, 0.3333333)
+texture = ExtResource("4_gee14")
+
+[node name="GroundDecor" type="Parallax2D" parent="Background" unique_id=1565857731]
+repeat_size = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/GroundDecor" unique_id=1288140705]
+position = Vector2(639.5, 359.49997)
+scale = Vector2(0.3330729, 0.33287033)
+texture = ExtResource("5_0tnpc")
+
+[node name="Tower" parent="." unique_id=582157060 groups=["bases"] instance=ExtResource("8_vtaks")]
+position = Vector2(54, 403.00003)
+
+[node name="Rigs" type="Node" parent="." unique_id=258550813]
+
+[node name="OilRig" parent="Rigs" unique_id=429579350 groups=["bases"] instance=ExtResource("7_0tnpc")]
+position = Vector2(41, 232)
+
+[node name="OilRig2" parent="Rigs" unique_id=2136708927 groups=["bases"] instance=ExtResource("7_0tnpc")]
+position = Vector2(42, 553)
+
+[node name="Machine" parent="." unique_id=1130351916 instance=ExtResource("9_0tnpc")]
+unique_name_in_owner = true
+position = Vector2(54, 335)
+
+[node name="EnemySpawner" parent="." unique_id=845549115 instance=ExtResource("11_kvpfn")]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=77476261]
+
+[node name="Control" type="Control" parent="UI" unique_id=1658120254]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 237.0
+offset_bottom = 65.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control" unique_id=1450570259]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 453.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSeparator3" type="VSeparator" parent="UI/Control/HBoxContainer" unique_id=1285035690]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rysoc")
+
+[node name="AmmoLabel" type="Label" parent="UI/Control/HBoxContainer" unique_id=1719252707]
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "0"
+horizontal_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UI/Control/HBoxContainer" unique_id=892619301]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("11_ssvqc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VSeparator2" type="VSeparator" parent="UI/Control/HBoxContainer" unique_id=113193765]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rysoc")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/HBoxContainer" unique_id=375813337]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("12_dinhu")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="CoinsLabel" type="Label" parent="UI/Control/HBoxContainer" unique_id=1158188888]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 44
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("13_trtic")
+
+[node name="VSeparator" type="VSeparator" parent="UI/Control/HBoxContainer" unique_id=2093998731]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rysoc")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Control/HBoxContainer" unique_id=1346441097]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("13_kvuet")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="WaveLabel" type="Label" parent="UI/Control/HBoxContainer/TextureRect2" unique_id=158113314]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 101.0
+offset_bottom = 29.0
+text = "WAVE   1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("14_ir15t")
+
+[node name="Message" parent="UI/Control/HBoxContainer" unique_id=1590351125 instance=ExtResource("16_264po")]
+layout_mode = 2
+
+[node name="VSeparator4" type="VSeparator" parent="UI" unique_id=1062397221]
+custom_minimum_size = Vector2(20, 0)
+offset_left = 566.0
+offset_right = 586.0
+offset_bottom = 65.0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rysoc")
+
+[node name="Control2" type="Control" parent="UI" unique_id=1657632765]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -186.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="NextWaveButton" type="Button" parent="UI/Control2" unique_id=937327055]
+texture_filter = 1
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_trtic")
+text = "NEXT WAVE"
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("15_ir15t")
+
+[node name="GameOverScreen" type="Control" parent="UI" unique_id=289286206]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("16_rysoc")
+
+[node name="TextureRect" type="TextureRect" parent="UI/GameOverScreen" unique_id=1713103403]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -326.0
+offset_top = -111.0
+offset_right = 335.7166
+offset_bottom = 154.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_ca42v")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UI/GameOverScreen" unique_id=830597909]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -234.0
+offset_top = -91.0
+offset_right = 234.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 54
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="UI/GameOverScreen" unique_id=1998904478]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = 125.0
+offset_right = 187.5
+offset_bottom = 202.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 56
+theme_override_styles/normal = SubResource("StyleBoxFlat_rysoc")
+text = "TRY AGAIN"
+
+[node name="Control3" type="Control" parent="UI" unique_id=1379882838]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control3" unique_id=175746882]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control3/MarginContainer" unique_id=2021448284]
+layout_mode = 2
+alignment = 1
+
+[node name="MuteButton" type="Button" parent="UI/Control3/MarginContainer/HBoxContainer" unique_id=824547554]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+icon = ExtResource("20_bt5mj")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("21_37s47")
+
+[node name="VSeparator2" type="VSeparator" parent="UI/Control3/MarginContainer/HBoxContainer" unique_id=1134784561]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rysoc")
+
+[node name="Button" type="Button" parent="UI/Control3/MarginContainer/HBoxContainer" unique_id=1288906414]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+icon = ExtResource("21_e1j6l")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="UI/Control2/NextWaveButton" to="UI/Control2/NextWaveButton" method="_on_pressed"]
+[connection signal="pressed" from="UI/GameOverScreen/Button" to="UI/GameOverScreen" method="_on_button_pressed"]

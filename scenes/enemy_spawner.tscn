@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://biisw8vqu40i1"]
+
+[ext_resource type="Script" uid="uid://d2loulknwxttr" path="res://scripts/enemy_spawner.gd" id="1_ks1gq"]
+
+[node name="EnemySpawner" type="Node2D" unique_id=845549115]
+script = ExtResource("1_ks1gq")
+
+[node name="Timer" type="Timer" parent="." unique_id=252659128]
+wait_time = 2.0
+
+[node name="Markers" type="Node" parent="." unique_id=41722599]
+
+[node name="Marker2D4" type="Marker2D" parent="Markers" unique_id=2028797468 groups=["spawn_markers"]]
+position = Vector2(1376, 195)
+
+[node name="Marker2D5" type="Marker2D" parent="Markers" unique_id=1388190039 groups=["spawn_markers"]]
+position = Vector2(1333, 224)
+
+[node name="Marker2D6" type="Marker2D" parent="Markers" unique_id=2124087608 groups=["spawn_markers"]]
+position = Vector2(1384, 243)
+
+[node name="Marker2D7" type="Marker2D" parent="Markers" unique_id=1623426824 groups=["spawn_markers"]]
+position = Vector2(1321, 288)
+
+[node name="Marker2D8" type="Marker2D" parent="Markers" unique_id=775809993 groups=["spawn_markers"]]
+position = Vector2(1405, 301)
+
+[node name="Marker2D9" type="Marker2D" parent="Markers" unique_id=656365306 groups=["spawn_markers"]]
+position = Vector2(1326, 336)
+
+[node name="Marker2D10" type="Marker2D" parent="Markers" unique_id=257651817 groups=["spawn_markers"]]
+position = Vector2(1397, 351)
+
+[node name="Marker2D11" type="Marker2D" parent="Markers" unique_id=1545450789 groups=["spawn_markers"]]
+position = Vector2(1334, 394)
+
+[node name="Marker2D12" type="Marker2D" parent="Markers" unique_id=359638930 groups=["spawn_markers"]]
+position = Vector2(1398, 419)
+
+[node name="Marker2D13" type="Marker2D" parent="Markers" unique_id=1864851177 groups=["spawn_markers"]]
+position = Vector2(1331, 456)
+
+[node name="Marker2D14" type="Marker2D" parent="Markers" unique_id=592134391 groups=["spawn_markers"]]
+position = Vector2(1414, 473)
+
+[node name="Marker2D15" type="Marker2D" parent="Markers" unique_id=279080210 groups=["spawn_markers"]]
+position = Vector2(1351, 514)
+
+[node name="Marker2D16" type="Marker2D" parent="Markers" unique_id=1647149721 groups=["spawn_markers"]]
+position = Vector2(1422, 546)
+
+[node name="Marker2D17" type="Marker2D" parent="Markers" unique_id=292591389 groups=["spawn_markers"]]
+position = Vector2(1318, 578)
+
+[node name="Marker2D18" type="Marker2D" parent="Markers" unique_id=1552333636 groups=["spawn_markers"]]
+position = Vector2(1435, 606)
+
+[node name="Marker2D19" type="Marker2D" parent="Markers" unique_id=100063593 groups=["spawn_markers"]]
+position = Vector2(1331, 638)
+
+[node name="Marker2D20" type="Marker2D" parent="Markers" unique_id=1591171497 groups=["spawn_markers"]]
+position = Vector2(1448, 647)
+
+[node name="Marker2D21" type="Marker2D" parent="Markers" unique_id=656984820 groups=["spawn_markers"]]
+position = Vector2(1386, 661)
+
+[node name="Marker2D24" type="Marker2D" parent="Markers" unique_id=1726195051 groups=["spawn_markers"]]
+position = Vector2(1457, 210)
+
+[node name="Marker2D25" type="Marker2D" parent="Markers" unique_id=2025669379 groups=["spawn_markers"]]
+position = Vector2(1469, 278)
+
+[node name="Marker2D26" type="Marker2D" parent="Markers" unique_id=1567684391 groups=["spawn_markers"]]
+position = Vector2(1485, 336)
+
+[node name="Marker2D27" type="Marker2D" parent="Markers" unique_id=526195240 groups=["spawn_markers"]]
+position = Vector2(1491, 391)
+
+[node name="Marker2D28" type="Marker2D" parent="Markers" unique_id=908631391 groups=["spawn_markers"]]
+position = Vector2(1501, 467)
+
+[node name="Marker2D29" type="Marker2D" parent="Markers" unique_id=1230561363 groups=["spawn_markers"]]
+position = Vector2(1522, 537)
+
+[node name="Marker2D30" type="Marker2D" parent="Markers" unique_id=1645987639 groups=["spawn_markers"]]
+position = Vector2(1532, 611)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

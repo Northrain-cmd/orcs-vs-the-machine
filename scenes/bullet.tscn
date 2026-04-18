@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://3slaihoisebh"]
+
+[ext_resource type="Texture2D" uid="uid://cusw7rll0ckv0" path="res://assets/sprites/bullets/BulletHeaven/Pistol-AR/PistolPNGs/Pistol-AR1.png" id="1_mkf8s"]
+[ext_resource type="Script" uid="uid://ykcmawbucaa3" path="res://scripts/bullet.gd" id="1_y25gk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
+size = Vector2(8, 5)
+
+[node name="Bullet" type="Area2D" unique_id=1662996745]
+collision_mask = 2
+script = ExtResource("1_y25gk")
+
+[node name="PistolAr1" type="Sprite2D" parent="." unique_id=1279095876]
+position = Vector2(0.09231758, -0.47703552)
+rotation = 1.5707964
+texture = ExtResource("1_mkf8s")
+offset = Vector2(0.47703475, -17.907682)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1927913175]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_y25gk")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=736855833]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

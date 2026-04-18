@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dtjp5xgclmbf3"
+path="res://.godot/imported/02 - Upgrade_Fix Track gamedev js 2026 Jam - STRUCTURE.wav-6d7c833a8da572eec174e44ba934f210.sample"
+
+[deps]
+
+source_file="res://assets/game_background_4/02 - Upgrade_Fix Track gamedev js 2026 Jam - STRUCTURE.wav"
+dest_files=["res://.godot/imported/02 - Upgrade_Fix Track gamedev js 2026 Jam - STRUCTURE.wav-6d7c833a8da572eec174e44ba934f210.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

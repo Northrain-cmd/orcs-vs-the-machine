@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://cdj0av7ordtdf"]
+
+[ext_resource type="Script" uid="uid://dleuwydbvnwxf" path="res://scripts/enemy.gd" id="1_uoc1i"]
+[ext_resource type="Texture2D" uid="uid://cechik5da1ypm" path="res://assets/sprites/orcs.png" id="1_v543l"]
+[ext_resource type="Texture2D" uid="uid://dqkb6g2m5ryjk" path="res://assets/sprites/basici_attack.png" id="3_1gaq3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uoc1i"]
+size = Vector2(29.5, 59)
+
+[sub_resource type="Animation" id="Animation_hr5vy"]
+resource_name = "Attack"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:vframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("3_1gaq3")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_1gaq3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:vframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("1_v543l")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_5oh32"]
+resource_name = "Run"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2035, 0.4079),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [12, 13, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hr5vy"]
+_data = {
+&"Attack": SubResource("Animation_hr5vy"),
+&"RESET": SubResource("Animation_1gaq3"),
+&"Run": SubResource("Animation_5oh32")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gaq3"]
+size = Vector2(28, 42)
+
+[node name="BasicOrc" type="RigidBody2D" unique_id=385108320 groups=["enemies"]]
+collision_layer = 2
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_uoc1i")
+attack_power = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=853898143]
+texture = ExtResource("1_v543l")
+hframes = 12
+vframes = 8
+frame = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=183326300]
+position = Vector2(1.25, 4.5)
+shape = SubResource("RectangleShape2D_uoc1i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2061221859]
+libraries/ = SubResource("AnimationLibrary_hr5vy")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=754790735]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=447457422]
+position = Vector2(-4, 4)
+shape = SubResource("RectangleShape2D_1gaq3")
+
+[node name="Timer" type="Timer" parent="." unique_id=92969013]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dymdmgcwlck6q"]
+
+[ext_resource type="PackedScene" uid="uid://cdj0av7ordtdf" path="res://scenes/basic_orc.tscn" id="1_y6lbj"]
+
+[sub_resource type="Animation" id="Animation_bh8tl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+
+[sub_resource type="Animation" id="Animation_gvqf8"]
+resource_name = "Run"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2035, 0.4079),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [18, 19, 20]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i6kks"]
+_data = {
+&"RESET": SubResource("Animation_bh8tl"),
+&"Run": SubResource("Animation_gvqf8")
+}
+
+[node name="BasicOrc" unique_id=385108320 instance=ExtResource("1_y6lbj")]
+speed = 50
+health = 300.0
+attack_power = 20
+
+[node name="Sprite2D" parent="." index="0" unique_id=853898143]
+frame = 19
+
+[node name="AnimationPlayer" parent="." index="2" unique_id=2061221859]
+libraries/ = SubResource("AnimationLibrary_i6kks")

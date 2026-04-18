@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://gsax3akui2s5"]
+
+[ext_resource type="Texture2D" uid="uid://cb0prmq01mapm" path="res://assets/UI/Basic_GUI_Bundle/ButtonsText/ButtonText_Large_GreyOutline_Square_1.png" id="1_11qlq"]
+[ext_resource type="Script" uid="uid://dqx5l5o8b0khp" path="res://scripts/message.gd" id="1_x5w8s"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x5w8s"]
+texture = ExtResource("1_11qlq")
+
+[sub_resource type="Animation" id="Animation_11qlq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_x5w8s"]
+resource_name = "show_message"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yad0m"]
+_data = {
+&"RESET": SubResource("Animation_11qlq"),
+&"show_message": SubResource("Animation_x5w8s")
+}
+
+[node name="Message" type="MarginContainer" unique_id=1769907720]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_x5w8s")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=928798787]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_x5w8s")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=63120723]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer" unique_id=1680718491]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "NOT ENOUGH COINS"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=107587585]
+libraries/ = SubResource("AnimationLibrary_yad0m")
