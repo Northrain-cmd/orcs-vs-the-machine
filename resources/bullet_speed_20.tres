@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bksdiulapctk3"]
+
+[ext_resource type="Texture2D" uid="uid://bqym4xc7hjmth" path="res://assets/sprites/cards/arrows.png" id="1_koqyp"]
+[ext_resource type="Script" uid="uid://bs7mm6j6fl5pj" path="res://resources/upgrade_data.gd" id="2_oq7pe"]
+
+[resource]
+script = ExtResource("2_oq7pe")
+title = "Bullets Speed"
+description = "+20%"
+icon = ExtResource("1_koqyp")
+effect_type = "bullet_speed"
+value = 1.2
+metadata/_custom_type_script = "uid://bs7mm6j6fl5pj"

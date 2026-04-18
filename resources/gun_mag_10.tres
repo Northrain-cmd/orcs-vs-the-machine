@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://b1kyujrfugobu"]
+
+[ext_resource type="Texture2D" uid="uid://o0lho82duito" path="res://assets/sprites/cards/bullet.png" id="1_gvegd"]
+[ext_resource type="Script" uid="uid://bs7mm6j6fl5pj" path="res://resources/upgrade_data.gd" id="2_pbq2n"]
+
+[resource]
+script = ExtResource("2_pbq2n")
+title = "Clip Size"
+description = "+10"
+icon = ExtResource("1_gvegd")
+effect_type = "gun_mag"
+value = 10.0
+metadata/_custom_type_script = "uid://bs7mm6j6fl5pj"

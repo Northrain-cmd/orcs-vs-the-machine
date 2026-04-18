@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cecmffm3xii5a"]
+
+[ext_resource type="Script" uid="uid://dlaebyjgvrqd1" path="res://scripts/upgrade_card.gd" id="1_62kwj"]
+[ext_resource type="Texture2D" uid="uid://c3hgmfieqtk77" path="res://assets/UI/Basic_GUI_Bundle/ButtonsIcons/IconButton_Large_Blank_Square.png" id="2_fk0rn"]
+[ext_resource type="Texture2D" uid="uid://c2hoea5sjau5b" path="res://assets/sprites/cards/blast.png" id="3_0hv3p"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_igsks"]
+texture = ExtResource("3_0hv3p")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk0rn"]
+bg_color = Color(0.9289083, 0.44032094, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hv3p"]
+bg_color = Color(0.7113411, 0.5904747, 0, 1)
+
+[node name="Card1" type="MarginContainer" unique_id=96908585]
+custom_minimum_size = Vector2(200, 200)
+script = ExtResource("1_62kwj")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=942635475]
+modulate = Color(0.27022192, 0.27022192, 0.2702219, 1)
+layout_mode = 2
+texture = ExtResource("2_fk0rn")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=236227323]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_igsks")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1700132966]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer" unique_id=1045297909]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="VBoxContainer" unique_id=1517216675]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=108683144]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=215135299]
+custom_minimum_size = Vector2(40, 45)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=2000311931]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_fk0rn")
+text = "BUY"
+icon_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=473538377]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0hv3p")
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PanelContainer" unique_id=1382587334]
+layout_mode = 2
+text = "25
+COINS"
+horizontal_alignment = 1
+vertical_alignment = 1

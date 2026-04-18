@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cnuy14mfpd85y"]
+
+[ext_resource type="Texture2D" uid="uid://c3pxtxmj62p75" path="res://assets/sprites/cards/ammo.png" id="1_g5hxg"]
+[ext_resource type="Script" uid="uid://bs7mm6j6fl5pj" path="res://resources/upgrade_data.gd" id="2_2vafx"]
+
+[resource]
+script = ExtResource("2_2vafx")
+title = "Reload Time"
+description = "- 5%"
+icon = ExtResource("1_g5hxg")
+effect_type = "gun_reload"
+value = 0.95
+metadata/_custom_type_script = "uid://bs7mm6j6fl5pj"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cr6alp5kq1vs4"]
+
+[ext_resource type="Texture2D" uid="uid://b4lleldjq1kxt" path="res://assets/sprites/cards/target.png" id="1_puyf3"]
+[ext_resource type="Script" uid="uid://bs7mm6j6fl5pj" path="res://resources/upgrade_data.gd" id="2_bmb54"]
+
+[resource]
+script = ExtResource("2_bmb54")
+title = "Crit Chance"
+description = "+ 5%"
+icon = ExtResource("1_puyf3")
+effect_type = "bullet_crit"
+value = 1.05
+metadata/_custom_type_script = "uid://bs7mm6j6fl5pj"

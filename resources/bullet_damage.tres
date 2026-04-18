@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bmafp6ac5uu7j"]
+
+[ext_resource type="Texture2D" uid="uid://c2hoea5sjau5b" path="res://assets/sprites/cards/blast.png" id="1_exiv4"]
+[ext_resource type="Script" uid="uid://bs7mm6j6fl5pj" path="res://resources/upgrade_data.gd" id="2_5gfew"]
+
+[resource]
+script = ExtResource("2_5gfew")
+title = "Bullet Damage"
+description = "+10%"
+icon = ExtResource("1_exiv4")
+effect_type = "bullet_damage"
+value = 1.1
+metadata/_custom_type_script = "uid://bs7mm6j6fl5pj"
