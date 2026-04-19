@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cnei0e1aceshj"]
 
 [ext_resource type="Texture2D" uid="uid://dfu50gj0gxm5u" path="res://assets/game_background_4/layers/back_land.png" id="1_iywne"]
-[ext_resource type="Texture2D" uid="uid://nfahh636oovg" path="res://assets/castle wall/Castle_vertical3.png" id="2_gee14"]
 [ext_resource type="Texture2D" uid="uid://c7x2o5j2vvtn8" path="res://assets/game_background_4/layers/battleground.png" id="2_p57ef"]
 [ext_resource type="Texture2D" uid="uid://deh675020plv1" path="res://assets/game_background_4/layers/back_decor.png" id="3_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://cgi8npfml3inc" path="res://assets/game_background_4/layers/front_decor.png" id="4_gee14"]
@@ -11,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c2ha5h1tpkyrr" path="res://scenes/machine.tscn" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://biisw8vqu40i1" path="res://scenes/enemy_spawner.tscn" id="11_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://bpn7otgy5nk23" path="res://assets/UI/ammo.png" id="11_ssvqc"]
-[ext_resource type="Texture2D" uid="uid://c7f53vjc6q72k" path="res://assets/UI/Basic_GUI_Bundle/Icons/Icon_Small_CoinDollar.png" id="12_dinhu"]
 [ext_resource type="Texture2D" uid="uid://pr5k67qdk6yh" path="res://assets/UI/Basic_GUI_Bundle/BoxesBanners/Banner_Red.png" id="13_kvuet"]
 [ext_resource type="Script" uid="uid://bbycq8m6tivr8" path="res://scripts/coins_label.gd" id="13_trtic"]
 [ext_resource type="Script" uid="uid://be6ljnt63sy16" path="res://scripts/wave_label.gd" id="14_ir15t"]
@@ -25,6 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://bgohbe1yv1h53" path="res://scenes/upgrade_shop.tscn" id="23_bt5mj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rysoc"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5newe"]
+load_path = "res://.godot/imported/Icon_Small_CoinDollar.png-53b2e2b9f97fc3dd6ecfb58797b799ec.ctex"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trtic"]
 bg_color = Color(1, 0.5019608, 0, 1)
@@ -47,11 +48,6 @@ repeat_size = Vector2(1280, 0)
 position = Vector2(640.5, 360)
 scale = Vector2(0.3330729, 0.33240741)
 texture = ExtResource("1_iywne")
-
-[node name="CastleVertical3" type="Sprite2D" parent="Background/BackgroundLand" unique_id=987312982]
-position = Vector2(47, 561)
-scale = Vector2(4.1875, 4.1875)
-texture = ExtResource("2_gee14")
 
 [node name="Battleground" type="Parallax2D" parent="Background" unique_id=1152116461]
 repeat_size = Vector2(1280, 0)
@@ -147,7 +143,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-texture = ExtResource("12_dinhu")
+texture = SubResource("CompressedTexture2D_5newe")
 expand_mode = 5
 stretch_mode = 4
 
@@ -285,13 +281,16 @@ text = "TRY AGAIN"
 
 [node name="Control3" type="Control" parent="UI" unique_id=1379882838]
 layout_mode = 3
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -40.0
+offset_right = 118.0
 grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -302,7 +301,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Control3/MarginContainer" unique_id=2021448284]
 layout_mode = 2
@@ -329,6 +328,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Control4" parent="UI" unique_id=91946804 instance=ExtResource("23_bt5mj")]
+visible = false
 
 [connection signal="pressed" from="UI/Control2/NextWaveButton" to="UI/Control2/NextWaveButton" method="_on_pressed"]
 [connection signal="pressed" from="UI/GameOverScreen/Button" to="UI/GameOverScreen" method="_on_button_pressed"]

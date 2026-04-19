@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://b250dywvt1n2u" path="res://assets/sprites/towers.png" id="1_2x682"]
 [ext_resource type="Script" uid="uid://bfjpxg67ygyjk" path="res://scripts/tower.gd" id="1_ay4al"]
+[ext_resource type="Script" uid="uid://eaho4j70bf4u" path="res://scripts/rig_upgrade_menu.gd" id="3_qrbg1"]
+[ext_resource type="Texture2D" uid="uid://yw450ojp0ytj" path="res://assets/UI/Basic_GUI_Bundle/Icons/Icon_Large_HeartFull.png" id="4_jfguu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ay4al"]
 atlas = ExtResource("1_2x682")
@@ -154,6 +156,9 @@ bg_color = Color(1, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ay4al"]
 bg_color = Color(0, 0.6542178, 0.010327319, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85u2j"]
+bg_color = Color(0.9289083, 0.44032094, 0, 1)
+
 [node name="Tower" type="StaticBody2D" unique_id=582157060]
 scale = Vector2(1.565, 1.565)
 collision_mask = 2
@@ -174,3 +179,50 @@ theme_override_styles/background = SubResource("StyleBoxFlat_2x682")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ay4al")
 value = 100.0
 show_percentage = false
+
+[node name="UpgradeMenu" type="Node2D" parent="." unique_id=340744789 node_paths=PackedStringArray("fix_object")]
+visible = false
+z_index = 1
+z_as_relative = false
+position = Vector2(11, 20)
+script = ExtResource("3_qrbg1")
+fix_object = NodePath("..")
+
+[node name="Panel" type="Panel" parent="UpgradeMenu" unique_id=1273137756]
+offset_left = -50.0
+offset_top = -52.0
+offset_right = 50.0
+offset_bottom = 5.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeMenu/Panel" unique_id=1250456804]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -51.0
+offset_right = 50.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="FixButton" type="Button" parent="UpgradeMenu/Panel/VBoxContainer" unique_id=1228172314]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_85u2j")
+text = "FIX"
+icon = ExtResource("4_jfguu")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Label" type="Label" parent="UpgradeMenu/Panel/VBoxContainer" unique_id=1460403668]
+layout_mode = 2
+text = "220 COINS"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="UpgradeMenu/Panel/VBoxContainer/FixButton" to="UpgradeMenu" method="_on_fix_button_pressed"]

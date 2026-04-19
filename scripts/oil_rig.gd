@@ -10,6 +10,8 @@ var gold_wait_time = 5
 @onready var income_label: Label = $IncomeLabel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Rig
+@onready var upgrade_menu: Node2D = $UpgradeMenu
+@onready var label: Label = $UpgradeMenu/Panel/VBoxContainer/Label
 
 
 func _ready() -> void:
@@ -57,9 +59,29 @@ func _on_gold_timer_timeout() -> void:
 	
 func restore_health():
 	var price = health_bar.max_value - health_bar.value
+	label.text = str(price) + " COINS"
 	if GameManager.coins >= price:
 		health = health_bar.max_value
 		health_bar.value = health
 		GameManager.spend(price)
+		GameManager.request_message("RIG FIXED!")
+		upgrade_menu.hide()
 	else:
 		GameManager.request_message("NOT ENOUGH COINS!")
+
+func _on_max_health_button_pressed() -> void:
+	var price = health_bar.max_value - health_bar.value + 50
+	if GameManager.coins >= price:
+		add_max_health(1.2)
+		GameManager.spend(price)
+	else:
+		GameManager.request_message("NOT ENOUGH COINS!")
+func add_max_health(value):
+	max_health *= value
+	health = max_health
+	health_bar.value = int(health)
+	health_bar.max_value = max_health
+
+func request_fix_price():
+	return health_bar.max_value - health_bar.value
+	

@@ -5,7 +5,8 @@ var next_wave_button = null
 var machine_gun = null
 var _spawn_started = false
 var message_label = null
-var coins: int = 0
+var upgrade_shop = null
+var coins: int = 1000
 signal state_changed(new_state)
 
 enum STATES {
@@ -29,7 +30,7 @@ func _physics_process(delta: float) -> void:
 func handle_state(delta):
 	match current_state:
 		STATES.START:
-			coins = 0
+			coins_label.text = str(coins)
 			wave_number = 0
 			machine_gun.stop_firing()
 			next_wave_button.show()
@@ -40,6 +41,7 @@ func handle_state(delta):
 				enemy_spawner.start_spawning(wave_number)
 				_spawn_started = true
 		STATES.COMBAT:
+			machine_gun.start_firing()
 			if get_tree().get_nodes_in_group("enemies").size() == 0:
 				_set_state(STATES.VICTORY)
 		STATES.VICTORY:
@@ -70,3 +72,19 @@ func spend(price):
 		
 func request_message(text:String):
 	message_label.display(text)
+
+func apply_upgrade(type,value):
+	match type:
+		"gun_reload":
+			machine_gun.reduce_reload_time(value)
+		"gun_range":
+			machine_gun.increase_range(value)
+		"gun_mag":
+			machine_gun.increase_mag_size(value)
+		"bullet_speed":
+			machine_gun.increase_bullet_speed(value)
+		"bullet_damage":
+			machine_gun.increase_bullet_damage(value)
+		"bullet_crit":
+			pass
+	request_message("UPGRADE APPLIED")

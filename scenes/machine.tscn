@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://tfvysbked5ct" path="res://scripts/machine.gd" id="1_73k52"]
 [ext_resource type="Texture2D" uid="uid://n014i58u11h1" path="res://assets/sprites/machine gun/me.png" id="1_a5lir"]
 [ext_resource type="PackedScene" uid="uid://3slaihoisebh" path="res://scenes/bullet.tscn" id="3_448ux"]
+[ext_resource type="Texture2D" uid="uid://lhpbhaureknu" path="res://assets/sprites/machine gun/line_texture.tres" id="4_i4f25"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73k52"]
 size = Vector2(207, 34)
@@ -45,24 +46,31 @@ _data = {
 &"Reload": SubResource("Animation_i4f25")
 }
 
+[sub_resource type="Gradient" id="Gradient_i4f25"]
+interpolation_mode = 2
+colors = PackedColorArray(0.36910734, 0.36910734, 0.3691073, 1, 0.57254905, 0.57254905, 0.57254905, 1)
+
 [node name="Machine" type="CharacterBody2D" unique_id=1130351916]
-scale = Vector2(0.54, 0.54)
 collision_mask = 0
 script = ExtResource("1_73k52")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1805162473]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_a5lir")
 vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1083564884]
 position = Vector2(-1.5, 7)
+scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_73k52")
 
 [node name="Bullet" parent="." unique_id=1662996745 instance=ExtResource("3_448ux")]
-position = Vector2(117, -2)
+position = Vector2(57.407406, 0)
+scale = Vector2(0.5, 0.5)
 
 [node name="ShootingPoint" type="Marker2D" parent="." unique_id=934212855]
-position = Vector2(125, -3)
+position = Vector2(57.40741, 2.3841858e-07)
+scale = Vector2(0.5, 0.5)
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1841360591]
 
@@ -71,6 +79,16 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1034096773]
 libraries/ = SubResource("AnimationLibrary_hr233")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1537895944]
+texture_filter = 2
+position = Vector2(59.259254, 0)
+points = PackedVector2Array(0, 0, 1000, 0)
+width = 3.0
+gradient = SubResource("Gradient_i4f25")
+texture = ExtResource("4_i4f25")
+texture_mode = 2
+antialiased = true
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

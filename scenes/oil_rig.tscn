@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bffyvjabmtogy" path="res://scripts/oil_rig.gd" id="1_gou2l"]
 [ext_resource type="Script" uid="uid://eaho4j70bf4u" path="res://scripts/rig_upgrade_menu.gd" id="3_c03sr"]
 [ext_resource type="Texture2D" uid="uid://yw450ojp0ytj" path="res://assets/UI/Basic_GUI_Bundle/Icons/Icon_Large_HeartFull.png" id="3_qglys"]
-[ext_resource type="Texture2D" uid="uid://c7f53vjc6q72k" path="res://assets/UI/Basic_GUI_Bundle/Icons/Icon_Small_CoinDollar.png" id="4_c03sr"]
 
 [sub_resource type="Gradient" id="Gradient_cmsh7"]
 interpolation_mode = 1
@@ -88,6 +87,9 @@ _data = {
 &"RESET": SubResource("Animation_uii1n")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ljrpf"]
+bg_color = Color(0.9289083, 0.44032094, 0, 1)
+
 [node name="OilRig" type="StaticBody2D" unique_id=2136708927]
 collision_mask = 2
 script = ExtResource("1_gou2l")
@@ -136,16 +138,17 @@ text = "+ 10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UpgradeMenu" type="Node2D" parent="." unique_id=363924919]
+[node name="UpgradeMenu" type="Node2D" parent="." unique_id=363924919 node_paths=PackedStringArray("fix_object")]
 visible = false
-position = Vector2(11, 1)
+position = Vector2(11, 20)
 script = ExtResource("3_c03sr")
+fix_object = NodePath("..")
 
 [node name="Panel" type="Panel" parent="UpgradeMenu" unique_id=1827776320]
 offset_left = -50.0
 offset_top = -52.0
 offset_right = 50.0
-offset_bottom = 50.0
+offset_bottom = 5.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UpgradeMenu/Panel" unique_id=113253775]
 layout_mode = 1
@@ -155,49 +158,28 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = -41.5
+offset_top = -51.0
 offset_right = 50.0
-offset_bottom = 41.5
+offset_bottom = 26.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeMenu/Panel/VBoxContainer" unique_id=1167834935]
-layout_mode = 2
-theme_override_constants/separation = 1
-alignment = 1
-
-[node name="UpgradeIncome" type="Button" parent="UpgradeMenu/Panel/VBoxContainer/HBoxContainer" unique_id=826155427]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "UPGRADE"
-icon = ExtResource("4_c03sr")
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
-
-[node name="MaxHealthButton" type="Button" parent="UpgradeMenu/Panel/VBoxContainer/HBoxContainer" unique_id=210744442]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "UPGRADE"
-icon = ExtResource("3_qglys")
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UpgradeMenu/Panel/VBoxContainer" unique_id=1758597207]
-layout_mode = 2
-theme_override_constants/separation = 1
-
-[node name="FixButton" type="Button" parent="UpgradeMenu/Panel/VBoxContainer/HBoxContainer2" unique_id=1223274150]
+[node name="FixButton" type="Button" parent="UpgradeMenu/Panel/VBoxContainer" unique_id=1223274150]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_ljrpf")
 text = "FIX"
 icon = ExtResource("3_qglys")
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
+[node name="Label" type="Label" parent="UpgradeMenu/Panel/VBoxContainer" unique_id=1769219038]
+layout_mode = 2
+text = "220 COINS"
+horizontal_alignment = 1
+
 [connection signal="timeout" from="GoldTimer" to="." method="_on_gold_timer_timeout"]
-[connection signal="pressed" from="UpgradeMenu/Panel/VBoxContainer/HBoxContainer2/FixButton" to="UpgradeMenu" method="_on_fix_button_pressed"]
+[connection signal="pressed" from="UpgradeMenu/Panel/VBoxContainer/FixButton" to="UpgradeMenu" method="_on_fix_button_pressed"]

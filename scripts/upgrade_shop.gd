@@ -6,7 +6,15 @@ const UPGRADE_CARD = preload("uid://cecmffm3xii5a")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	open_shop()
+	GameManager.upgrade_shop = self
+	GameManager.connect("state_changed", on_state_change)
+
+func on_state_change(new_state):
+	match new_state:
+		GameManager.STATES.VICTORY:
+			open_shop()
+		_:
+			_on_done_button_pressed()
 
 func open_shop():
 	show()
@@ -21,3 +29,9 @@ func create_card(data):
 	new_card.setup(data)
 	card_container.add_child(new_card)
 	
+
+
+func _on_done_button_pressed() -> void:
+	hide()
+	for child in card_container.get_children():
+		card_container.remove_child(child)
