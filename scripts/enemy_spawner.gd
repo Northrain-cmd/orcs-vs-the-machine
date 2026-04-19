@@ -12,7 +12,7 @@ var enemies_to_spawn = []
 const waves_table = [
 	{
 	"enemies": [
-		{"type": "basic", "count": 1},
+		{"type": "basic", "count": 10},
 	],
 	"delay": 2
 	},

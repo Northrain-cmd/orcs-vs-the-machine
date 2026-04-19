@@ -14,7 +14,7 @@ var game_state
 var bullets_left = mag_size
 @export var rotation_speed = 1
 @export var fire_rate = 0.5
-@export var max_range = 1000.0
+@export var max_range = 600.0
 @onready var reload_timer: Timer = $ReloadTimer
 @onready var ammo_label: Label = $"../UI/Control/HBoxContainer/AmmoLabel"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

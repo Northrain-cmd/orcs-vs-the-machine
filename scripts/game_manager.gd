@@ -6,7 +6,7 @@ var machine_gun = null
 var _spawn_started = false
 var message_label = null
 var upgrade_shop = null
-var coins: int = 1000
+var coins: int = 0
 signal state_changed(new_state)
 
 enum STATES {

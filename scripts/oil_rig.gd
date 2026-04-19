@@ -58,7 +58,7 @@ func _on_gold_timer_timeout() -> void:
 	animation_player.play("Gold_Deposited")
 	
 func restore_health():
-	var price = health_bar.max_value - health_bar.value
+	var price = int(health_bar.max_value - health_bar.value)
 	label.text = str(price) + " COINS"
 	if GameManager.coins >= price:
 		health = health_bar.max_value
@@ -83,5 +83,5 @@ func add_max_health(value):
 	health_bar.max_value = max_health
 
 func request_fix_price():
-	return health_bar.max_value - health_bar.value
+	return int(health_bar.max_value - health_bar.value)
 	
