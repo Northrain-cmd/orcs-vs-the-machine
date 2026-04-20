@@ -5,7 +5,7 @@ signal destroyed
 @export var health = 300.0
 @export var max_health = 300.0
 @onready var gold_timer: Timer = $GoldTimer
-var income = 5
+var income = 10
 var gold_wait_time = 5
 @onready var income_label: Label = $IncomeLabel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -39,6 +39,7 @@ func take_damage(amount):
 	tween.tween_property(sprite_2d, "modulate",Color.RED, 0.1)
 	tween.tween_property(sprite_2d, "modulate",Color.WHITE, 0.1)
 	health -= amount
+	AudioManager.play_wood_sound(health, max_health)
 	health_bar.value = health
 	if health <= 0:
 		die()

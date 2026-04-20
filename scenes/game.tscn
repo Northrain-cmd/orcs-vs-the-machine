@@ -22,11 +22,14 @@
 [ext_resource type="Texture2D" uid="uid://bdfuyrmugqt0c" path="res://assets/UI/Basic_GUI_Bundle/Icons/SVG/Icon_Small_Blank_Pause.svg" id="21_e1j6l"]
 [ext_resource type="Script" uid="uid://bs7mm6j6fl5pj" path="res://resources/upgrade_data.gd" id="22_qnb83"]
 [ext_resource type="PackedScene" uid="uid://bgohbe1yv1h53" path="res://scenes/upgrade_shop.tscn" id="23_bt5mj"]
+[ext_resource type="Resource" uid="uid://cr6alp5kq1vs4" path="res://resources/bullet_crit.tres" id="23_sgl2t"]
 [ext_resource type="Resource" uid="uid://bmafp6ac5uu7j" path="res://resources/bullet_damage.tres" id="23_sww3w"]
+[ext_resource type="Texture2D" uid="uid://vtb62g4ynu" path="res://assets/sprites/cards/critical-damage.png" id="24_qouja"]
 [ext_resource type="Resource" uid="uid://bksdiulapctk3" path="res://resources/bullet_speed_20.tres" id="24_suyxu"]
 [ext_resource type="Resource" uid="uid://b1kyujrfugobu" path="res://resources/gun_mag_10.tres" id="25_sgl2t"]
 [ext_resource type="Resource" uid="uid://csdbinc1mtwt0" path="res://resources/gun_range_20.tres" id="26_qouja"]
 [ext_resource type="Resource" uid="uid://cnuy14mfpd85y" path="res://resources/gun_reload.tres" id="27_wljb1"]
+[ext_resource type="Resource" uid="uid://b05b60wdoej5y" path="res://resources/machine_rotation_20.tres" id="30_wljb1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rysoc"]
 
@@ -35,6 +38,12 @@ load_path = "res://.godot/imported/Icon_Small_CoinDollar.png-53b2e2b9f97fc3dd6ec
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trtic"]
 bg_color = Color(1, 0.5019608, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_detail = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rysoc"]
 bg_color = Color(1, 0.5019608, 0, 1)
@@ -42,6 +51,16 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="Resource" id="Resource_sgl2t"]
+resource_local_to_scene = true
+script = ExtResource("22_qnb83")
+title = "Crit Damage"
+description = " +10%"
+icon = ExtResource("24_qouja")
+effect_type = "bullet_crit_damage"
+value = 1.1
+metadata/_custom_type_script = "uid://bs7mm6j6fl5pj"
 
 [node name="Game" type="Node" unique_id=2051993807]
 
@@ -101,6 +120,7 @@ position = Vector2(42, 553)
 [node name="Machine" parent="." unique_id=1130351916 instance=ExtResource("9_0tnpc")]
 unique_name_in_owner = true
 position = Vector2(54, 335)
+fire_rate = 1
 
 [node name="EnemySpawner" parent="." unique_id=845549115 instance=ExtResource("11_kvpfn")]
 
@@ -206,15 +226,21 @@ offset_left = -186.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="NextWaveButton" type="Button" parent="UI/Control2" unique_id=937327055]
-texture_filter = 1
-custom_minimum_size = Vector2(50, 0)
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control2" unique_id=1210818790]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="NextWaveButton" type="Button" parent="UI/Control2/MarginContainer" unique_id=937327055]
+texture_filter = 1
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_trtic")
 text = "NEXT WAVE"
 icon_alignment = 1
@@ -335,7 +361,7 @@ expand_icon = true
 
 [node name="Control4" parent="UI" unique_id=91946804 instance=ExtResource("23_bt5mj")]
 visible = false
-all_upgrades = Array[ExtResource("22_qnb83")]([ExtResource("23_sww3w"), ExtResource("24_suyxu"), ExtResource("25_sgl2t"), ExtResource("26_qouja"), ExtResource("27_wljb1")])
+_all_upgrades = Array[ExtResource("22_qnb83")]([ExtResource("23_sgl2t"), SubResource("Resource_sgl2t"), ExtResource("23_sww3w"), ExtResource("24_suyxu"), ExtResource("25_sgl2t"), ExtResource("26_qouja"), ExtResource("27_wljb1"), ExtResource("30_wljb1")])
 
-[connection signal="pressed" from="UI/Control2/NextWaveButton" to="UI/Control2/NextWaveButton" method="_on_pressed"]
+[connection signal="pressed" from="UI/Control2/MarginContainer/NextWaveButton" to="UI/Control2/MarginContainer/NextWaveButton" method="_on_pressed"]
 [connection signal="pressed" from="UI/GameOverScreen/Button" to="UI/GameOverScreen" method="_on_button_pressed"]

@@ -11,10 +11,13 @@ var game_state
 @export var reload_time = 2
 @export var bullet_speed = 300.0
 @export var bullet_damage = 50.0
+@export var crit_chance = 0.05
+@export var crit_damage_multiplier = 1.5
 var bullets_left = mag_size
-@export var rotation_speed = 1
-@export var fire_rate = 0.5
+@export var rotation_speed = 0.012
+@export var fire_rate = 1
 @export var max_range = 600.0
+var is_crit = false
 @onready var reload_timer: Timer = $ReloadTimer
 @onready var ammo_label: Label = $"../UI/Control/HBoxContainer/AmmoLabel"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -50,6 +53,7 @@ func reduce_reload_time(value:float):
 	
 func increase_range(value:float):
 	max_range *= value
+	scope.set_point_position(1, Vector2(scope.position.x + max_range,0))
 	print(str(max_range))
 
 func increase_mag_size(value):
@@ -108,14 +112,19 @@ func shoot():
 	if(bullets_left == 0):
 		GameManager.request_message("NO AMMO, PRESS R")
 	else:
+		var cur_damage = calc_damage()
 		var new_bullet = BULLET.instantiate()
 		new_bullet.global_position = shooting_point.global_position
 		new_bullet.global_rotation = shooting_point.global_rotation
-		new_bullet.setup(max_range, bullet_damage, bullet_speed)
+		new_bullet.setup(max_range, cur_damage, bullet_speed, is_crit)
 		add_sibling(new_bullet)
 		bullets_left -= 1
 		update_ammo_label()
-
+func calc_damage():
+	if randf() <= crit_chance:
+		is_crit = true
+		return bullet_damage * crit_damage_multiplier
+	else: return bullet_damage
 func reload():
 	bullets_left = mag_size
 	
@@ -136,3 +145,15 @@ func increase_bullet_speed(value):
 func increase_bullet_damage(value):
 	bullet_damage *= value
 	print(bullet_damage)
+	
+func increase_crit_chance(value):
+	crit_chance += value
+	print(crit_chance)
+	
+func increase_crit_damage(value):
+	crit_damage_multiplier *= value
+	print(crit_damage_multiplier)
+	
+func increase_rotation_speed(value):
+	rotation_speed *= value
+	print(rotation_speed)

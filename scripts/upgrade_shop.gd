@@ -1,13 +1,15 @@
 extends Control
-@export var all_upgrades:Array[UpgradeData] = []
+@export var _all_upgrades:Array[UpgradeData] = []
 const UPGRADE_CARD = preload("uid://cecmffm3xii5a")
 @onready var card_container: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/Card_Container
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#open_shop()
 	GameManager.upgrade_shop = self
 	GameManager.connect("state_changed", on_state_change)
+
 
 func on_state_change(new_state):
 	match new_state:
@@ -18,7 +20,7 @@ func on_state_change(new_state):
 
 func open_shop():
 	show()
-	var available = all_upgrades.duplicate()
+	var available = _all_upgrades.duplicate()
 	available.shuffle()
 	for i in range(3):
 		var upgrade = available.pop_back()

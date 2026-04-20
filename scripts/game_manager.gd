@@ -64,11 +64,13 @@ func _set_state(new_state:STATES):
 func on_gold_deposit(income):
 	coins += income
 	coins_label.text = str(coins)
+	AudioManager.play_coin_sound()
 	
 func spend(price):
 	if price <= coins:
 		coins -= price
 		coins_label.text = str(coins)
+		AudioManager.play_coin_sound()
 		
 func request_message(text:String):
 	message_label.display(text)
@@ -86,5 +88,9 @@ func apply_upgrade(type,value):
 		"bullet_damage":
 			machine_gun.increase_bullet_damage(value)
 		"bullet_crit":
-			pass
+			machine_gun.increase_crit_chance(value)
+		"bullet_crit_damage":
+			machine_gun.increase_crit_damage(value)
+		"machine_rotation":
+			machine_gun.increase_rotation_speed(value)
 	request_message("UPGRADE APPLIED")

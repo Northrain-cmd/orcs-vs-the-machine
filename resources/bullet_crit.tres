@@ -9,5 +9,5 @@ title = "Crit Chance"
 description = "+ 5%"
 icon = ExtResource("1_puyf3")
 effect_type = "bullet_crit"
-value = 1.05
+value = 0.05
 metadata/_custom_type_script = "uid://bs7mm6j6fl5pj"

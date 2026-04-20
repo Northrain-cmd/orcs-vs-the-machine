@@ -15,6 +15,7 @@ func request_fix_price():
 func take_damage(amount):
 	health -= amount
 	health_bar.value = health
+	AudioManager.play_stone_sound(health, max_health)
 	if health <= 0:
 		die()
 

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ceunijkiow3dn"
+path="res://.godot/imported/Impacts_Stone_Heavy_008.wav-d0b14c3888f86f84d99f85b93d5b9c1b.sample"
+
+[deps]
+
+source_file="res://sounds/Orcs vs The Machine SFX/Impacts/Stone/Impacts_Stone_Heavy_008.wav"
+dest_files=["res://.godot/imported/Impacts_Stone_Heavy_008.wav-d0b14c3888f86f84d99f85b93d5b9c1b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

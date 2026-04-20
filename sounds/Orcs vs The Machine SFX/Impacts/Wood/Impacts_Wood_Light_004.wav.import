@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cegn1i6gx1yxg"
+path="res://.godot/imported/Impacts_Wood_Light_004.wav-7ee2357f0bc7e21b5e7ad3cd475e24c2.sample"
+
+[deps]
+
+source_file="res://sounds/Orcs vs The Machine SFX/Impacts/Wood/Impacts_Wood_Light_004.wav"
+dest_files=["res://.godot/imported/Impacts_Wood_Light_004.wav-7ee2357f0bc7e21b5e7ad3cd475e24c2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

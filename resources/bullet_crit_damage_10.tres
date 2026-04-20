@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bglmho1koqi0f"]
+
+[ext_resource type="Texture2D" uid="uid://vtb62g4ynu" path="res://assets/sprites/cards/critical-damage.png" id="1_40yvx"]
+[ext_resource type="Script" uid="uid://bs7mm6j6fl5pj" path="res://resources/upgrade_data.gd" id="2_smqde"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_smqde")
+title = "Crit Damage"
+description = " +10%"
+icon = ExtResource("1_40yvx")
+effect_type = "bullet_crit_damage"
+value = 1.1
+metadata/_custom_type_script = "uid://bs7mm6j6fl5pj"
