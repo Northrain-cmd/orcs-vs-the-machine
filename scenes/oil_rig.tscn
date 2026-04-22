@@ -90,9 +90,10 @@ _data = {
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ljrpf"]
 bg_color = Color(0.9289083, 0.44032094, 0, 1)
 
-[node name="OilRig" type="StaticBody2D" unique_id=2136708927]
+[node name="OilRig" type="StaticBody2D" unique_id=2136708927 groups=["bases"]]
 collision_mask = 2
 script = ExtResource("1_gou2l")
+health = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1167674843]
 position = Vector2(0, 40)
@@ -180,6 +181,9 @@ expand_icon = true
 layout_mode = 2
 text = "220 COINS"
 horizontal_alignment = 1
+
+[node name="RebuildMarker" type="Marker2D" parent="." unique_id=479839621]
+position = Vector2(-50, -59)
 
 [connection signal="timeout" from="GoldTimer" to="." method="_on_gold_timer_timeout"]
 [connection signal="pressed" from="UpgradeMenu/Panel/VBoxContainer/FixButton" to="UpgradeMenu" method="_on_fix_button_pressed"]

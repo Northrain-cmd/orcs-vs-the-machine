@@ -5,11 +5,16 @@ var next_wave_button = null
 var machine_gun = null
 var _spawn_started = false
 var message_label = null
+var pause_button = null
 var upgrade_shop = null
+var resume_menu = null
+var menu = null
+var operational_rigs: int = 2
 var coins: int = 0
 signal state_changed(new_state)
 
 enum STATES {
+	MENU,
 	START,
 	SPAWNING,
 	COMBAT,
@@ -17,9 +22,9 @@ enum STATES {
 	DEFEAT
 	}
 	
-var current_state:STATES = STATES.START
+var current_state:STATES = STATES.MENU
 const BASIC_ORC = preload("uid://cdj0av7ordtdf")
-var wave_number
+var wave_number = 0
 
 func _ready() -> void:
 	pass
@@ -29,9 +34,15 @@ func _physics_process(delta: float) -> void:
 
 func handle_state(delta):
 	match current_state:
+		STATES.MENU:
+			menu.show()
+			AudioManager.pause_muisc()
 		STATES.START:
+			_spawn_started = false
+			AudioManager.unpause_muisc()
 			coins_label.text = str(coins)
 			wave_number = 0
+			coins = 0
 			machine_gun.stop_firing()
 			next_wave_button.show()
 		STATES.SPAWNING:
@@ -75,6 +86,26 @@ func spend(price):
 func request_message(text:String):
 	message_label.display(text)
 
+func set_pause_button(button: Button):
+	pause_button = button
+	pause_button.connect("pressed", _on_pause_pressed)
+	
+func pause_game():
+	get_tree().paused = true
+	resume_menu.show()
+	AudioManager.pause_muisc()
+	
+func unpause_game():
+	get_tree().paused = false
+	AudioManager.unpause_muisc()
+	
+func exit_to_menu():
+	get_tree().reload_current_scene()
+	_set_state(STATES.MENU)
+	unpause_game()
+func _on_pause_pressed():
+	pause_game()
+	
 func apply_upgrade(type,value):
 	match type:
 		"gun_reload":

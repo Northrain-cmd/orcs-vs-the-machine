@@ -1,0 +1,587 @@
+[gd_scene format=3 uid="uid://81nevhwq3aqw"]
+
+[ext_resource type="Script" uid="uid://b34dteichku43" path="res://scripts/menu.gd" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://cechik5da1ypm" path="res://assets/sprites/orcs.png" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://dlytq7qarv8na" path="res://assets/game_background_4/layers/Gemini_Generated_Image_mf2anvmf2anvmf2a 2.png" id="2_con2f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjb58"]
+bg_color = Color(0.8890199, 0.5566994, 1.1551381e-06, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_con2f"]
+bg_color = Color(0.62425137, 0.62425107, 0, 1)
+
+[sub_resource type="Animation" id="Animation_yqeox"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orcs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [91]
+}
+
+[sub_resource type="Animation" id="Animation_vjb58"]
+resource_name = "Stand_front"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orcs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [55, 90]
+}
+
+[sub_resource type="Animation" id="Animation_con2f"]
+resource_name = "Walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orcs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666669, 0.33333337),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [91, 90, 92]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g3eks"]
+_data = {
+&"RESET": SubResource("Animation_yqeox"),
+&"Stand_front": SubResource("Animation_vjb58"),
+&"Walk": SubResource("Animation_con2f")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v86rl"]
+bg_color = Color(0.29577872, 0.70924526, 1.92523e-07, 1)
+
+[sub_resource type="Animation" id="Animation_13sgg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(639, 832)]
+}
+
+[sub_resource type="Animation" id="Animation_i6lef"]
+resource_name = "Walk_in"
+length = 2.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orcs/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("Walk", "Stand_front"),
+"times": PackedFloat32Array(0, 1.9666667)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(639, 832), Vector2(639, 560)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_70i5f"]
+_data = {
+&"RESET": SubResource("Animation_13sgg"),
+&"Walk_in": SubResource("Animation_i6lef")
+}
+
+[sub_resource type="Animation" id="Animation_mhnvy"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orcs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [73]
+}
+
+[sub_resource type="Animation" id="Animation_4ytvr"]
+resource_name = "Stand_front"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orcs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [49, 90]
+}
+
+[sub_resource type="Animation" id="Animation_g3eks"]
+resource_name = "Walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orcs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666669, 0.33333337),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [72, 73, 74]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v86rl"]
+_data = {
+&"RESET": SubResource("Animation_mhnvy"),
+&"Stand_front": SubResource("Animation_4ytvr"),
+&"Walk": SubResource("Animation_g3eks")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqeox"]
+bg_color = Color(0.73198843, 0.6012191, 0, 1)
+
+[sub_resource type="Animation" id="Animation_70i5f"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-109, 560)]
+}
+
+[sub_resource type="Animation" id="Animation_mj5lg"]
+resource_name = "Walk_in"
+length = 2.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orcs/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("Left_Walk_In/Walk", "Left_Walk_In/Stand_front"),
+"times": PackedFloat32Array(0, 1.9666667)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-104, 560), Vector2(380, 560)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ufwb2"]
+_data = {
+&"RESET": SubResource("Animation_70i5f"),
+&"Walk_in": SubResource("Animation_mj5lg")
+}
+
+[sub_resource type="Animation" id="Animation_v86rl"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orcs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [64]
+}
+
+[sub_resource type="Animation" id="Animation_ufwb2"]
+resource_name = "Stand_front"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orcs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [52, 90]
+}
+
+[sub_resource type="Animation" id="Animation_6cdou"]
+resource_name = "Walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orcs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666669, 0.33333337),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [63, 65, 64]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i42df"]
+_data = {
+&"RESET": SubResource("Animation_v86rl"),
+&"Stand_front": SubResource("Animation_ufwb2"),
+&"Walk": SubResource("Animation_6cdou")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jp70"]
+bg_color = Color(0, 0.46757913, 0.9414032, 1)
+
+[sub_resource type="Animation" id="Animation_mxgkd"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1383, 560)]
+}
+
+[sub_resource type="Animation" id="Animation_g6gyw"]
+resource_name = "Walk_in"
+length = 2.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orcs/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("Right/Walk", "Right/Stand_front"),
+"times": PackedFloat32Array(0, 1.9666667)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1383, 560), Vector2(900, 560)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3dmrc"]
+_data = {
+&"RESET": SubResource("Animation_mxgkd"),
+&"Walk_in": SubResource("Animation_g6gyw")
+}
+
+[sub_resource type="Animation" id="Animation_i42df"]
+resource_name = "Reset"
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterCredits/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("RESET"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftCredits/AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("Left/RESET"),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "animation"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RightCredits/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": PackedStringArray("Right/RESET"),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_81l6r"]
+resource_name = "show_credits"
+length = 2.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterCredits/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("Walk_in"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftCredits/AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("Left/Walk_in"),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "animation"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RightCredits/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": PackedStringArray("Right/Walk_in"),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rsfmq"]
+_data = {
+&"Reset": SubResource("Animation_i42df"),
+&"show_credits": SubResource("Animation_81l6r")
+}
+
+[node name="Menu" type="Control" unique_id=1044369296]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjb58")
+
+[node name="Background" type="TextureRect" parent="." unique_id=2115094778]
+modulate = Color(0.73300546, 0.7330054, 0.7330054, 1)
+layout_mode = 1
+offset_top = 1.0
+offset_right = 1294.0
+offset_bottom = 735.0
+texture = ExtResource("2_con2f")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1395368176]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.5
+offset_right = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=797628094]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=624935618]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
+text = "PLAY"
+
+[node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1131230728]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_con2f")
+text = "CREDITS"
+
+[node name="CreditsController" type="Node" parent="." unique_id=1016001256]
+
+[node name="CenterCredits" type="Node2D" parent="CreditsController" unique_id=784193884]
+position = Vector2(639, 832)
+
+[node name="Orcs" type="Sprite2D" parent="CreditsController/CenterCredits" unique_id=1102087177]
+position = Vector2(0, 14.999999)
+scale = Vector2(1.3333334, 1.3333334)
+texture = ExtResource("1_yqeox")
+hframes = 12
+vframes = 8
+frame = 91
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CreditsController/CenterCredits/Orcs" unique_id=1070289374]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_g3eks")
+
+[node name="PanelContainer" type="PanelContainer" parent="CreditsController/CenterCredits" unique_id=1838528129]
+offset_left = -69.0
+offset_top = -84.0
+offset_right = 78.0
+offset_bottom = -25.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v86rl")
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsController/CenterCredits/PanelContainer" unique_id=1421808992]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Game Designer" type="Label" parent="CreditsController/CenterCredits/PanelContainer/MarginContainer" unique_id=165370660]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "GAME DESIGNER:
+Northrain-cmd"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CreditsController/CenterCredits" unique_id=1262665731]
+libraries/ = SubResource("AnimationLibrary_70i5f")
+
+[node name="LeftCredits" type="Node2D" parent="CreditsController" unique_id=1557060342]
+position = Vector2(380, 560)
+
+[node name="Orcs" type="Sprite2D" parent="CreditsController/LeftCredits" unique_id=1865858619]
+position = Vector2(0, 14.999999)
+scale = Vector2(1.3333334, 1.3333334)
+texture = ExtResource("1_yqeox")
+hframes = 12
+vframes = 8
+frame = 49
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CreditsController/LeftCredits/Orcs" unique_id=409744471]
+root_node = NodePath("../..")
+libraries/Left_Walk_In = SubResource("AnimationLibrary_v86rl")
+
+[node name="PanelContainer" type="PanelContainer" parent="CreditsController/LeftCredits" unique_id=851427461]
+offset_left = -69.0
+offset_top = -84.0
+offset_right = 78.0
+offset_bottom = -25.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yqeox")
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsController/LeftCredits/PanelContainer" unique_id=1681536390]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Game Designer" type="Label" parent="CreditsController/LeftCredits/PanelContainer/MarginContainer" unique_id=1946122888]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "MUSIC:
+JezzaRoddy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CreditsController/LeftCredits" unique_id=848092096]
+libraries/Left = SubResource("AnimationLibrary_ufwb2")
+
+[node name="RightCredits" type="Node2D" parent="CreditsController" unique_id=1909516413]
+position = Vector2(900, 560)
+
+[node name="Orcs" type="Sprite2D" parent="CreditsController/RightCredits" unique_id=1632827589]
+position = Vector2(0, 14.999999)
+scale = Vector2(1.3333334, 1.3333334)
+texture = ExtResource("1_yqeox")
+hframes = 12
+vframes = 8
+frame = 52
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CreditsController/RightCredits/Orcs" unique_id=511375916]
+root_node = NodePath("../..")
+libraries/Right = SubResource("AnimationLibrary_i42df")
+
+[node name="PanelContainer" type="PanelContainer" parent="CreditsController/RightCredits" unique_id=1810779327]
+offset_left = -69.0
+offset_top = -84.0
+offset_right = 78.0
+offset_bottom = -25.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7jp70")
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsController/RightCredits/PanelContainer" unique_id=149131073]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Game Designer" type="Label" parent="CreditsController/RightCredits/PanelContainer/MarginContainer" unique_id=1936060364]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "SFX:
+Joseph Chauvin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CreditsController/RightCredits" unique_id=467397040]
+libraries/Right = SubResource("AnimationLibrary_3dmrc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CreditsController" unique_id=1962475537]
+libraries/ = SubResource("AnimationLibrary_rsfmq")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]

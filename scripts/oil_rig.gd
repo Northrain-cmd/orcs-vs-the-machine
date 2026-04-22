@@ -5,6 +5,7 @@ signal destroyed
 @export var health = 300.0
 @export var max_health = 300.0
 @onready var gold_timer: Timer = $GoldTimer
+const REBUILD_MENU = preload("uid://cvs6yqymguyyq")
 var income = 10
 var gold_wait_time = 5
 @onready var income_label: Label = $IncomeLabel
@@ -46,6 +47,12 @@ func take_damage(amount):
 
 func die():
 	destroyed.emit()
+	var rebuild_menu = REBUILD_MENU.instantiate()
+	rebuild_menu.rig_location = global_position
+	rebuild_menu.global_position = $RebuildMarker.global_position
+	rebuild_menu.hide()
+	add_sibling(rebuild_menu)
+	GameManager.operational_rigs -= 1
 	queue_free()
 
 func stop_mining():
@@ -85,4 +92,3 @@ func add_max_health(value):
 
 func request_fix_price():
 	return int(health_bar.max_value - health_bar.value)
-	

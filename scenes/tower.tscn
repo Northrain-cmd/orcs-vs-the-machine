@@ -159,7 +159,7 @@ bg_color = Color(0, 0.6542178, 0.010327319, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85u2j"]
 bg_color = Color(0.9289083, 0.44032094, 0, 1)
 
-[node name="Tower" type="StaticBody2D" unique_id=582157060]
+[node name="Tower" type="StaticBody2D" unique_id=582157060 groups=["bases"]]
 scale = Vector2(1.565, 1.565)
 collision_mask = 2
 script = ExtResource("1_ay4al")

@@ -7,7 +7,7 @@ var game_state
 @onready var shooting_point: Marker2D = $ShootingPoint
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var scope: Line2D = $Line2D
-@export var mag_size = 20
+@export var mag_size = 30
 @export var reload_time = 2
 @export var bullet_speed = 300.0
 @export var bullet_damage = 50.0
@@ -15,7 +15,7 @@ var game_state
 @export var crit_damage_multiplier = 1.5
 var bullets_left = mag_size
 @export var rotation_speed = 0.012
-@export var fire_rate = 1
+@export var fire_rate = 0.5
 @export var max_range = 600.0
 var is_crit = false
 @onready var reload_timer: Timer = $ReloadTimer
@@ -24,6 +24,7 @@ var is_crit = false
 
 func _ready() -> void:
 	scope.hide()
+	ammo_label.text = str(mag_size)
 	shoot_timer.wait_time = fire_rate
 	GameManager.machine_gun = self
 	GameManager.connect("state_changed", on_game_state_changed)
@@ -96,7 +97,7 @@ func stop_firing():
 	
 
 func start_firing():
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and current_state != GunState.RELOADING:
 		shoot()
 	elif Input.is_action_pressed("shoot"):
 		if shoot_timer.is_stopped():

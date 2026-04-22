@@ -67,7 +67,10 @@ func play_stone_sound(health, max_health):
 	elif health <= 0:
 		queue.append(sounds["impacts"]["stone"]["shatter"].pick_random())
 func play_coin_sound():
-	queue.append(sounds["menu"]["coins"].pick_random())
+	if GameManager.operational_rigs == 1:
+		queue.append(sounds["menu"]["coins"][1])
+	else:
+		queue.append(sounds["menu"]["coins"][0])
 
 func _process(delta: float) -> void:
 	if not queue.is_empty() and not available.is_empty():
@@ -110,3 +113,9 @@ func _on_mute_button_pressed() -> void:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), false)
 		is_muted = false
 		mute_button.icon = unmuted_icon
+func pause_muisc():
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
+
+func unpause_muisc():
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
+	
