@@ -34,7 +34,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		_stop_animation()
 		is_stopped = true
 		current_target = body
-		AudioManager.play_creature_sound("hit", enemy_type)
 		body.take_damage(attack_power)
 		timer.start()
 		
@@ -47,7 +46,7 @@ func _stop_animation():
 func _on_timer_timeout() -> void:
 	if current_target:
 		current_target.take_damage(attack_power)
-		AudioManager.play_creature_sound("hit", enemy_type)
+	
 	else:
 		is_stopped = false
 		on_target_destroy()
@@ -61,6 +60,7 @@ func _take_damage(amount,bullet, is_crit):
 	tween.tween_property(sprite_2d, "modulate",Color.WHITE, 0.1)
 	tween.tween_property(sprite_2d, "scale",Vector2(1,1), 0.1)	
 	health -= amount
+	AudioManager.play_creature_sound("hit", enemy_type)
 	if health <= 0:
 		die()
 func on_target_destroy():
