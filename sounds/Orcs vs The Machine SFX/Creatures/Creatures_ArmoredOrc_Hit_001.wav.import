@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cuy7oud8t6sdw"
+path="res://.godot/imported/Creatures_ArmoredOrc_Hit_001.wav-4fd57d3d7c138bf4a951946385232946.sample"
+
+[deps]
+
+source_file="res://sounds/Orcs vs The Machine SFX/Creatures/Creatures_ArmoredOrc_Hit_001.wav"
+dest_files=["res://.godot/imported/Creatures_ArmoredOrc_Hit_001.wav-4fd57d3d7c138bf4a951946385232946.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

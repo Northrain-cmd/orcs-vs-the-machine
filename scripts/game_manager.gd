@@ -71,7 +71,10 @@ func _set_state(new_state:STATES):
 		return
 	current_state = new_state
 	state_changed.emit(current_state)
-	
+
+func get_reload_speed() -> float:
+	return machine_gun.reload_time
+
 func on_gold_deposit(income):
 	coins += income
 	coins_label.text = str(coins)

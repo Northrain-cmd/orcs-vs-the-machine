@@ -29,6 +29,17 @@ var sounds = {
 	},
 	"menu": {
 		"coins":["uid://dvhwnurh18j8n","uid://be3s1tai7ythq"]
+	},
+	"creatures":{
+		"armored":["uid://cuy7oud8t6sdw", "uid://ds25qy7wflcae", "uid://c6teos5xjuokr", "uid://djby1fnf5l83e","uid://cewic27pmfau5"],
+		"fast":["uid://cjn3yg0cgcmky","uid://cubetmb6d18ai", "uid://2iybxcn7h2wx", "uid://bh8l5haklqnx3","uid://cp0d16t084rx2"],
+		"basic":["uid://d3h6tnem3ucns","uid://dxvlvyjem3l5","uid://cf0wx5x7vbq7o","uid://g2km045vs5pc","uid://newnx4q6qw74"],
+		"die":["uid://cbpvwdk6ewogp","uid://tw87301673vy","uid://bku7ox0dhb6j4","uid://dhvfev2m5sy0e","uid://cfr5jp8kkvi0x"]
+	},
+	"weapons": {
+		"shot": ["uid://xhp4mgktuv4q","uid://cg2kqvdop4wtn","uid://uh72ixf5is56","uid://g57lhm8a72p3","uid://v3gtmwi3sq5o"],
+		"empty":["uid://cemhjky7sibc0"],
+		"reload":["uid://cjyvt3cik2asl"]
 	}
 }
 func _ready() -> void:
@@ -40,12 +51,49 @@ func _ready() -> void:
 	play()
 	GameManager.state_changed.connect(on_state_change)
 	for i in num_players:
+		var player = create_sfx_player()
+		available.append(player)
+		player.finished.connect(_on_stream_finished.bind(player))
+		
+func create_sfx_player() -> AudioStreamPlayer:
 		var player = AudioStreamPlayer.new()
 		player.bus = sfx_bus
 		player.volume_db = -14
 		add_child(player)
-		available.append(player)
-		player.finished.connect(_on_stream_finished.bind(player))
+		return player
+		
+func create_single_shot_player(sound):
+		var player = AudioStreamPlayer.new()
+		player.bus = sfx_bus
+		player.volume_db = -14
+		add_child(player)
+		player.stream = load(sound)
+		player.play()
+		player.finished.connect(_on_single_shot_finished.bind(player))
+
+func _on_single_shot_finished(player):
+	player.queue_free()
+
+func play_shot():
+		create_single_shot_player((sounds["weapons"]["shot"].pick_random()))
+		
+func play_empty():
+		queue.append((sounds["weapons"]["empty"].pick_random()))		
+
+func play_reload():
+		queue.append((sounds["weapons"]["reload"].pick_random()))
+
+func play_creature_sound(type: String, creature_group: String):
+	if type == "hit":
+		match creature_group:
+			"basic":
+				create_single_shot_player((sounds["creatures"]["basic"].pick_random()))
+			"fast":
+				create_single_shot_player((sounds["creatures"]["fast"].pick_random()))
+			"armored":
+				create_single_shot_player((sounds["creatures"]["armored"].pick_random()))
+	else:
+		create_single_shot_player((sounds["creatures"]["die"].pick_random()))
 		
 func play_wood_sound(health, max_health):
 	if health / max_health >= 0.66:
@@ -74,14 +122,26 @@ func play_coin_sound():
 
 func _process(delta: float) -> void:
 	if not queue.is_empty() and not available.is_empty():
+		if(queue[0]) == "uid://cjyvt3cik2asl":
+			var initial_time = 2
+			available[0].pitch_scale = 1 / (GameManager.get_reload_speed() / initial_time) 
+			
+		else:
+			available[0].pitch_scale = 1
 		available[0].stream = load(queue.pop_front())
 		available[0].play()
 		available.pop_front()
+
+
+
 func _on_stream_finished(stream):
 	available.append(stream)
+	
 func on_state_change(new_state):
 	current_state = new_state
 	match current_state:
+		GameManager.STATES.MENU:
+			stop()
 		GameManager.STATES.SPAWNING:
 			stream = combat_track
 			play()
@@ -106,13 +166,16 @@ func _on_mute_button_pressed() -> void:
 	if(not is_muted):
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), true)
+		stop()
 		mute_button.icon = muted_icon
 		is_muted = true
 	else:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), false)
+		play()
 		is_muted = false
 		mute_button.icon = unmuted_icon
+
 func pause_muisc():
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 

@@ -10,6 +10,7 @@ extends RigidBody2D
 @onready var timer: Timer = $Timer
 const DEATH_EFFECT = preload("uid://tfv6ois8vjej")
 @onready var crit_label: Label = $CritLabel
+@export var enemy_type = "basic"
 
 var is_stopped = false
 var current_target
@@ -33,6 +34,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		_stop_animation()
 		is_stopped = true
 		current_target = body
+		AudioManager.play_creature_sound("hit", enemy_type)
 		body.take_damage(attack_power)
 		timer.start()
 		
@@ -45,6 +47,7 @@ func _stop_animation():
 func _on_timer_timeout() -> void:
 	if current_target:
 		current_target.take_damage(attack_power)
+		AudioManager.play_creature_sound("hit", enemy_type)
 	else:
 		is_stopped = false
 		on_target_destroy()
@@ -65,6 +68,7 @@ func on_target_destroy():
 	target_position = target.global_position + Vector2(0, randf_range(-50,50))
 
 func die():
+	AudioManager.play_creature_sound("die", enemy_type)
 	var effect = DEATH_EFFECT.instantiate()
 	effect.global_position = global_position
 	add_sibling(effect)

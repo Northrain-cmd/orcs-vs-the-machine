@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bh8l5haklqnx3"
+path="res://.godot/imported/Creatures_FastOrc_Death_004.wav-7f5e007b5f30516340737892170bb2d9.sample"
+
+[deps]
+
+source_file="res://sounds/Orcs vs The Machine SFX/Creatures/Creatures_FastOrc_Death_004.wav"
+dest_files=["res://.godot/imported/Creatures_FastOrc_Death_004.wav-7f5e007b5f30516340737892170bb2d9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

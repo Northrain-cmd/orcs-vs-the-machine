@@ -45,6 +45,7 @@ speed = 200
 health = 50.0
 attack_rate = 2
 attack_power = 3
+enemy_type = "fast"
 
 [node name="Sprite2D" parent="." index="0" unique_id=853898143]
 frame = 22

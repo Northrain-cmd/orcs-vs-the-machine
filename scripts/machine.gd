@@ -68,6 +68,7 @@ func try_reloading():
 	start_reload()
 	
 func start_reload():
+	AudioManager.play_reload()
 	current_state = GunState.RELOADING
 	stop_firing()
 	reload_timer.wait_time = reload_time
@@ -112,12 +113,14 @@ func _on_shoot_timer_timeout() -> void:
 func shoot():
 	if(bullets_left == 0):
 		GameManager.request_message("NO AMMO, PRESS R")
+		AudioManager.play_empty()
 	else:
 		var cur_damage = calc_damage()
 		var new_bullet = BULLET.instantiate()
 		new_bullet.global_position = shooting_point.global_position
 		new_bullet.global_rotation = shooting_point.global_rotation
 		new_bullet.setup(max_range, cur_damage, bullet_speed, is_crit)
+		AudioManager.play_shot()
 		add_sibling(new_bullet)
 		bullets_left -= 1
 		update_ammo_label()
@@ -126,6 +129,7 @@ func calc_damage():
 		is_crit = true
 		return bullet_damage * crit_damage_multiplier
 	else: return bullet_damage
+	
 func reload():
 	bullets_left = mag_size
 	
