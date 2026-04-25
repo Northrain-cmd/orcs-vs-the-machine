@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b34dteichku43" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="Texture2D" uid="uid://cechik5da1ypm" path="res://assets/sprites/orcs.png" id="1_yqeox"]
 [ext_resource type="Texture2D" uid="uid://dlytq7qarv8na" path="res://assets/game_background_4/layers/Gemini_Generated_Image_mf2anvmf2anvmf2a 2.png" id="2_con2f"]
+[ext_resource type="Script" uid="uid://yapkpnu66bx3" path="res://scripts/button_sfx_player.gd" id="3_mhnvy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjb58"]
 bg_color = Color(0.8890199, 0.5566994, 1.1551381e-06, 1)
@@ -448,12 +449,18 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
 text = "PLAY"
 
+[node name="SFX" type="Node" parent="MarginContainer/VBoxContainer/PlayButton" unique_id=1719582843]
+script = ExtResource("3_mhnvy")
+
 [node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1131230728]
 custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_con2f")
 text = "CREDITS"
+
+[node name="SFX" type="Node" parent="MarginContainer/VBoxContainer/CreditsButton" unique_id=243404094]
+script = ExtResource("3_mhnvy")
 
 [node name="CreditsController" type="Node" parent="." unique_id=1016001256]
 

@@ -8,7 +8,11 @@ extends Node2D
 
 func _ready() -> void:
 	GameManager.connect("state_changed",on_state_changed)
-	
+	fix_button.connect("mouse_entered", _on_hover)
+
+func _on_hover():
+	AudioManager.play_hover()
+
 func on_state_changed(new_state):
 	if new_state == GameManager.STATES.VICTORY:
 		visible = fix_object.health < fix_object.max_health
@@ -16,4 +20,5 @@ func on_state_changed(new_state):
 	elif new_state == GameManager.STATES.SPAWNING:
 		hide()
 func _on_fix_button_pressed() -> void:
+	AudioManager.play_upgrade()
 	fix_object.restore_health()

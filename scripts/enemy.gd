@@ -8,19 +8,34 @@ extends RigidBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var timer: Timer = $Timer
+
 const DEATH_EFFECT = preload("uid://tfv6ois8vjej")
+const GOLD_EFFECT = preload("uid://betbx5qryparw")
+
 @onready var crit_label: Label = $CritLabel
+var golden_chance: float
+var reward: int
 @export var enemy_type = "basic"
+const gold_outline = preload("uid://qvyo7xfbutsq")
+
+var is_golden = false
 
 var is_stopped = false
 var current_target
 var target_position
 func _ready() -> void:
+	GameManager.basic_enemy = self
+	if randf() <= golden_chance:
+		make_golden()
 	timer.wait_time = attack_rate
 	target_position = target.global_position + Vector2(0, randf_range(-50,50))
 	animation_player.play("Run")
 	if target.has_signal("destroyed"):
 		target.connect("destroyed",on_target_destroy)
+	
+func make_golden():
+	is_golden = true
+	sprite_2d.material = gold_outline
 	
 func _physics_process(delta: float) -> void:
 	var direction = global_position.direction_to(target_position)
@@ -69,11 +84,23 @@ func on_target_destroy():
 
 func die():
 	AudioManager.play_creature_sound("die", enemy_type)
-	var effect = DEATH_EFFECT.instantiate()
+	var effect = null
+	if is_golden == true:
+		GameManager.earn(reward)
+		effect =  GOLD_EFFECT.instantiate()
+		AudioManager.play_coin_sound()
+	elif is_golden == false:
+		effect = DEATH_EFFECT.instantiate()
 	effect.global_position = global_position
 	add_sibling(effect)
 	queue_free()
-	
+
+func increase_golden_chance(amount):
+	golden_chance += amount
+
+func increase_golden_reward(amount):
+	reward += amount
+
 func show_crit():
 	crit_label.modulate.a = 1.0
 	crit_label.scale = Vector2.ZERO

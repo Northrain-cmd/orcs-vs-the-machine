@@ -10,6 +10,9 @@
 [ext_resource type="Resource" uid="uid://cnuy14mfpd85y" path="res://resources/gun_reload.tres" id="8_jbnth"]
 [ext_resource type="Resource" uid="uid://b05b60wdoej5y" path="res://resources/machine_rotation_20.tres" id="9_lt0d2"]
 [ext_resource type="Resource" uid="uid://bglmho1koqi0f" path="res://resources/bullet_crit_damage_10.tres" id="10_mndg8"]
+[ext_resource type="Resource" uid="uid://dnp1nhm3tqufw" path="res://resources/golden_chance.tres" id="11_8goot"]
+[ext_resource type="Script" uid="uid://yapkpnu66bx3" path="res://scripts/button_sfx_player.gd" id="11_mndg8"]
+[ext_resource type="Resource" uid="uid://cyxwq8nsvylbk" path="res://resources/golden_reward.tres" id="12_gc2o6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu5s7"]
 bg_color = Color(0, 0, 0, 0.30588236)
@@ -31,7 +34,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_v8ny2")
-_all_upgrades = Array[ExtResource("2_o5je6")]([ExtResource("3_lt0d2"), ExtResource("10_mndg8"), ExtResource("4_mndg8"), ExtResource("5_q1psx"), ExtResource("6_8goot"), ExtResource("7_gc2o6"), ExtResource("8_jbnth"), ExtResource("9_lt0d2")])
+all_upgrades = Array[ExtResource("2_o5je6")]([ExtResource("3_lt0d2"), ExtResource("10_mndg8"), ExtResource("4_mndg8"), ExtResource("5_q1psx"), ExtResource("11_8goot"), ExtResource("12_gc2o6"), ExtResource("6_8goot"), ExtResource("7_gc2o6"), ExtResource("8_jbnth"), ExtResource("9_lt0d2")])
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=855182220]
 layout_mode = 1
@@ -85,5 +88,8 @@ size_flags_vertical = 8
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_o5je6")
 text = "DONE"
+
+[node name="SFX" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Button" unique_id=1655314070]
+script = ExtResource("11_mndg8")
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_done_button_pressed"]

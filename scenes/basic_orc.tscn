@@ -150,6 +150,7 @@ texture = ExtResource("1_v543l")
 hframes = 12
 vframes = 8
 frame = 12
+region_rect = Rect2(110, 104, 22, 40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=183326300]
 position = Vector2(1.25, 4.5)

@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://8a40dqqthla4" path="res://scripts/next_wave_button.gd" id="15_ir15t"]
 [ext_resource type="PackedScene" uid="uid://gsax3akui2s5" path="res://scenes/message.tscn" id="16_264po"]
 [ext_resource type="Texture2D" uid="uid://cnbfq8t8dbuq4" path="res://assets/UI/Basic_GUI_Bundle/BoxesBanners/Banner_Blue.png" id="16_ca42v"]
+[ext_resource type="Script" uid="uid://yapkpnu66bx3" path="res://scripts/button_sfx_player.gd" id="16_js0lu"]
 [ext_resource type="Script" uid="uid://qds72wlq18j3" path="res://scripts/game_over_screen.gd" id="16_rysoc"]
 [ext_resource type="Texture2D" uid="uid://c3pn5dklaoama" path="res://assets/UI/Basic_GUI_Bundle/Icons/SVG/Icon_Large_Audio_Blank.svg" id="20_bt5mj"]
 [ext_resource type="Script" uid="uid://bj464k3q1eb51" path="res://scenes/mute_button.gd" id="21_37s47"]
@@ -55,7 +56,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="Resource" id="Resource_v2yb1"]
+[sub_resource type="Resource" id="Resource_js0lu"]
 resource_local_to_scene = true
 script = ExtResource("22_qnb83")
 title = "Crit Damage"
@@ -134,6 +135,7 @@ position = Vector2(54, 335)
 [node name="EnemySpawner" parent="." unique_id=845549115 instance=ExtResource("11_kvpfn")]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=77476261]
+process_mode = 3
 
 [node name="Control" type="Control" parent="UI" unique_id=1658120254]
 layout_mode = 3
@@ -256,7 +258,11 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("15_ir15t")
 
+[node name="SFX" type="Node" parent="UI/Control2/MarginContainer/NextWaveButton" unique_id=1941622304]
+script = ExtResource("16_js0lu")
+
 [node name="GameOverScreen" type="Control" parent="UI" unique_id=289286206]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -320,6 +326,9 @@ theme_override_font_sizes/font_size = 56
 theme_override_styles/normal = SubResource("StyleBoxFlat_rysoc")
 text = "TRY AGAIN"
 
+[node name="SFX" type="Node" parent="UI/GameOverScreen/Button" unique_id=2077000754]
+script = ExtResource("16_js0lu")
+
 [node name="Control3" type="Control" parent="UI" unique_id=1379882838]
 layout_mode = 3
 anchors_preset = 7
@@ -356,6 +365,9 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("21_37s47")
 
+[node name="SFX" type="Node" parent="UI/Control3/MarginContainer/HBoxContainer/MuteButton" unique_id=959160020]
+script = ExtResource("16_js0lu")
+
 [node name="VSeparator2" type="VSeparator" parent="UI/Control3/MarginContainer/HBoxContainer" unique_id=1134784561]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
@@ -369,9 +381,12 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("21_v2yb1")
 
+[node name="SFX" type="Node" parent="UI/Control3/MarginContainer/HBoxContainer/PauseButton" unique_id=862054228]
+script = ExtResource("16_js0lu")
+
 [node name="Control4" parent="UI" unique_id=91946804 instance=ExtResource("23_bt5mj")]
 visible = false
-_all_upgrades = Array[ExtResource("22_qnb83")]([ExtResource("23_sgl2t"), SubResource("Resource_v2yb1"), ExtResource("23_sww3w"), ExtResource("24_suyxu"), ExtResource("25_sgl2t"), ExtResource("26_qouja"), ExtResource("27_wljb1"), ExtResource("30_wljb1")])
+_all_upgrades = Array[ExtResource("22_qnb83")]([ExtResource("23_sgl2t"), SubResource("Resource_js0lu"), ExtResource("23_sww3w"), ExtResource("24_suyxu"), ExtResource("25_sgl2t"), ExtResource("26_qouja"), ExtResource("27_wljb1"), ExtResource("30_wljb1")])
 
 [node name="ResumeMenu" type="MarginContainer" parent="UI" unique_id=1933910493]
 unique_name_in_owner = true
@@ -401,12 +416,20 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
 text = "RESUME"
 
+[node name="SFX" type="Node" parent="UI/ResumeMenu/VBoxContainer/ResumeButton" unique_id=1227091502]
+process_mode = 3
+script = ExtResource("16_js0lu")
+
 [node name="ExitButton" type="Button" parent="UI/ResumeMenu/VBoxContainer" unique_id=1958277995]
 custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_js0lu")
 text = "EXIT"
+
+[node name="SFX" type="Node" parent="UI/ResumeMenu/VBoxContainer/ExitButton" unique_id=114124556]
+process_mode = 3
+script = ExtResource("16_js0lu")
 
 [node name="Menu" parent="UI" unique_id=1044369296 instance=ExtResource("10_qouja")]
 visible = false

@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://qvyo7xfbutsq"]
+
+[ext_resource type="Shader" uid="uid://conu1vo4rbg3p" path="res://scenes/golden_enemy.gdshader" id="1_s3obh"]
+
+[resource]
+shader = ExtResource("1_s3obh")
+shader_parameter/line_color = Color(1, 0.8, 0, 1)
+shader_parameter/line_thickness = 1.0

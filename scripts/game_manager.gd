@@ -9,9 +9,11 @@ var pause_button = null
 var upgrade_shop = null
 var resume_menu = null
 var menu = null
+var basic_enemy = null
 var operational_rigs: int = 2
 var coins: int = 0
 signal state_changed(new_state)
+var is_open = false
 
 enum STATES {
 	MENU,
@@ -24,7 +26,7 @@ enum STATES {
 	
 var current_state:STATES = STATES.MENU
 const BASIC_ORC = preload("uid://cdj0av7ordtdf")
-var wave_number = 0
+var wave_number = 1
 
 func _ready() -> void:
 	pass
@@ -36,8 +38,10 @@ func handle_state(delta):
 	match current_state:
 		STATES.MENU:
 			menu.show()
-			AudioManager.pause_muisc()
 		STATES.START:
+			#if is_open == false:
+				#upgrade_shop.open_shop()
+				#is_open = true
 			_spawn_started = false
 			AudioManager.unpause_muisc()
 			coins_label.text = str(coins)
@@ -72,6 +76,11 @@ func _set_state(new_state:STATES):
 	current_state = new_state
 	state_changed.emit(current_state)
 
+
+func earn(amount):
+	coins += amount
+	coins_label.text = str(coins)
+	
 func get_reload_speed() -> float:
 	return machine_gun.reload_time
 
@@ -108,7 +117,8 @@ func exit_to_menu():
 	unpause_game()
 func _on_pause_pressed():
 	pause_game()
-	
+
+
 func apply_upgrade(type,value):
 	match type:
 		"gun_reload":
@@ -127,4 +137,8 @@ func apply_upgrade(type,value):
 			machine_gun.increase_crit_damage(value)
 		"machine_rotation":
 			machine_gun.increase_rotation_speed(value)
+		"golden_chance":
+			enemy_spawner.increase_golden_chance(value)	
+		"golden_reward":
+			enemy_spawner.increase_golden_reward(value)
 	request_message("UPGRADE APPLIED")

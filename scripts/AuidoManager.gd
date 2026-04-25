@@ -7,6 +7,7 @@ var queue = []
 const combat_track = preload("uid://w8pxwx0ali1g")
 const upgrade_track = preload("uid://bsumfoddgmamc")
 const game_over_track = preload("uid://die3cm4pugtok")
+const menu_track = preload("uid://bk068enp0fr6p")
 var mute_button: Button
 @onready var current_state = GameManager.current_state
 const muted_icon = preload("uid://csupipwc3b5nw")
@@ -28,7 +29,10 @@ var sounds = {
 		},
 	},
 	"menu": {
-		"coins":["uid://dvhwnurh18j8n","uid://be3s1tai7ythq"]
+		"coins":["uid://dvhwnurh18j8n","uid://be3s1tai7ythq"],
+		"hover":["uid://c0w7bfywa6pul"],
+		"confirm":["uid://c1b1kf2ojhfti"],
+		"upgrade":["uid://cwsaeu2e8emiu"]
 	},
 	"creatures":{
 		"armored":["uid://cuy7oud8t6sdw", "uid://ds25qy7wflcae", "uid://c6teos5xjuokr", "uid://djby1fnf5l83e","uid://cewic27pmfau5"],
@@ -44,7 +48,7 @@ var sounds = {
 }
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	current_state = GameManager.STATES.START
+	current_state = GameManager.STATES.MENU
 	stream = upgrade_track
 	bus = "Master"
 	volume_db = -10
@@ -54,7 +58,7 @@ func _ready() -> void:
 		var player = create_sfx_player()
 		available.append(player)
 		player.finished.connect(_on_stream_finished.bind(player))
-		
+	on_state_change(current_state)	
 func create_sfx_player() -> AudioStreamPlayer:
 		var player = AudioStreamPlayer.new()
 		player.bus = sfx_bus
@@ -73,6 +77,16 @@ func create_single_shot_player(sound):
 
 func _on_single_shot_finished(player):
 	player.queue_free()
+
+func play_hover():
+	queue.append((sounds["menu"]["hover"].pick_random()))
+
+func play_confirm():
+	queue.append((sounds["menu"]["confirm"].pick_random()))
+	
+
+func play_upgrade():
+	queue.append((sounds["menu"]["upgrade"].pick_random()))
 
 func play_shot():
 		create_single_shot_player((sounds["weapons"]["shot"].pick_random()))
@@ -141,7 +155,8 @@ func on_state_change(new_state):
 	current_state = new_state
 	match current_state:
 		GameManager.STATES.MENU:
-			stop()
+			stream = menu_track
+			play()
 		GameManager.STATES.SPAWNING:
 			stream = combat_track
 			play()
